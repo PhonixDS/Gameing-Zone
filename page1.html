@@ -60,27 +60,6 @@
         </div>
     </div>
 
-    <script>
-        // To simulate fetching timer data via an endpoint
-        function getTimerData() {
-            const storedData = JSON.parse(localStorage.getItem('PC1_Timer'));
-            if (storedData) {
-                return {
-                    timerRunning: storedData.running,
-                    remaining: storedData.remainingTime
-                };
-            }
-            return {
-                timerRunning: false,
-                remaining: 0
-            };
-        }
-
-        // Expose the data in a format that can be accessed via a URL
-        if (window.location.href.includes("getTimerStatus")) {
-            const timerData = getTimerData();
-            document.body.innerHTML = JSON.stringify(timerData);  // Simulating JSON response
-        }
-    </script>
+<script src="script.js"></script>
 </body>
 </html>

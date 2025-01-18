@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Timer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="timer-container">
+        <h1>PC4</h1>
+        <div id="timerDisplay" class="timer-display">00:00:00</div>
+
+        <!-- Preset buttons -->
+        <div class="preset-buttons">
+            <!-- Dynamically add all hour-based presets -->
+            <button onclick="startTimer(0.5, this)">0.5 Hours</button>
+            <button onclick="startTimer(1, this)">1 Hour</button>
+            <button onclick="startTimer(1.5, this)">1.5 Hours</button>
+            <button onclick="startTimer(2, this)">2 Hours</button>
+            <button onclick="startTimer(2.5, this)">2.5 Hours</button>
+            <button onclick="startTimer(3, this)">3 Hours</button>
+            <button onclick="startTimer(3.5, this)">3.5 Hours</button>
+            <button onclick="startTimer(4, this)">4 Hours</button>
+            <button onclick="startTimer(4.5, this)">4.5 Hours</button>
+            <button onclick="startTimer(5, this)">5 Hours</button>
+            <button onclick="startTimer(5.5, this)">5.5 Hours</button>
+            <button onclick="startTimer(6, this)">6 Hours</button>
+            <button onclick="startTimer(6.5, this)">6.5 Hours</button>
+            <button onclick="startTimer(7, this)">7 Hours</button>
+            <button onclick="startTimer(7.5, this)">7.5 Hours</button>
+            <button onclick="startTimer(8, this)">8 Hours</button>
+            <button onclick="startTimer(8.5, this)">8.5 Hours</button>
+            <button onclick="startTimer(9, this)">9 Hours</button>
+            <button onclick="startTimer(9.5, this)">9.5 Hours</button>
+            <button onclick="startTimer(10, this)">10 Hours</button>
+            <button onclick="startTimer(10.5, this)">10.5 Hours</button>
+            <button onclick="startTimer(11, this)">11 Hours</button>
+            <button onclick="startTimer(11.5, this)">11.5 Hours</button>
+            <button onclick="startTimer(12, this)">12 Hours</button>
+        </div>
+
+        <!-- Custom timer input -->
+        <div class="custom-timer">
+            <label for="customHours">Hours:</label>
+            <input type="number" id="customHours" min="0" placeholder="0">
+            <label for="customMinutes">Minutes:</label>
+            <input type="number" id="customMinutes" min="0" max="59" placeholder="0">
+            <label for="customSeconds">Seconds:</label>
+            <input type="number" id="customSeconds" min="0" max="59" placeholder="0">
+            <button onclick="startCustomTimer()">Start Custom Timer</button>
+        </div>
+
+        <div>
+            <button onclick="stopTimer()">Stop Timer</button>
+        </div>
+
+        <div>
+            <button onclick="goToSecondPage()">Go to Timer Info Page</button>
+        </div>
+    </div>
+
+    <script>
+        // To simulate fetching timer data via an endpoint
+        function getTimerData() {
+            const storedData = JSON.parse(localStorage.getItem('PC1_Timer'));
+            if (storedData) {
+                return {
+                    timerRunning: storedData.running,
+                    remaining: storedData.remainingTime
+                };
+            }
+            return {
+                timerRunning: false,
+                remaining: 0
+            };
+        }
+
+        // Expose the data in a format that can be accessed via a URL
+        if (window.location.href.includes("getTimerStatus")) {
+            const timerData = getTimerData();
+            document.body.innerHTML = JSON.stringify(timerData);  // Simulating JSON response
+        }
+    </script>
+</body>
+</html>
